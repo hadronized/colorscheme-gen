@@ -6,7 +6,7 @@ bin="colorscheme-gen"
 let i=0
 conf=~/.Xdefaults
 bckp=.Xdefaults.bckp
-out=.Xdefaults
+out=.Xdefaults.out
 
 function usage() {
     echo "usage: $bin file"
@@ -28,12 +28,12 @@ echo "Your configuration has been saved in $bckp"
 
 # writing the new fucking file
 while read rgb; do
-    if [[ $i = 4 ]]; then
+    #if [[ $i = 4 ]]; then
         # used as the comment color by default by almost all editors!
-        echo "urxvt*color$i:     #666666" >> $out
-    else
-        echo "urxvt*color$i:     $rgb" >> $out
-    fi    
+    #    echo "urxvt*color$i:     #666666" >> $out
+    #else
+	echo "urxvt*color$i:     $rgb" >> $out
+    #fi    
     let ++i
 done <<< `grep "var" $1 | cut -f 2 -d=`
 
