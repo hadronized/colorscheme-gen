@@ -28,13 +28,18 @@ echo "Your configuration has been saved in $bckp"
 
 # writing the new fucking file
 while read rgb; do
-    #if [[ $i = 4 ]]; then
+    if [[ $i = 4 ]]; then
         # used as the comment color by default by almost all editors!
-    #    echo "urxvt*color$i:     #666666" >> $out
-    #else
-	echo "urxvt*color$i:     $rgb" >> $out
-    #fi    
-    let ++i
+        echo "urxvt*color$i:     #777777" >> $out
+    else
+        if [[ $i = 7 ]]; then
+            # used in irssi as primary color in status bar
+            echo "urxvt*color$i:     #CCCCCC" >> $out
+        else
+            echo "urxvt*color$i:     $rgb" >> $out
+        fi
+    fi    
+    let i++
 done <<< `grep "var" $1 | cut -f 2 -d=`
 
 mv $out $conf 
